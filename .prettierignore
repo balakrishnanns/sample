@@ -1,0 +1,5 @@
+# Ignore build outputs
+dist/
+build/
+
+package-lock.json
