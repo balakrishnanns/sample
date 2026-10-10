@@ -1,5 +1,5 @@
 
-export default {
+module.exports = {
   plugins: [
     {
       rules: {
@@ -10,7 +10,7 @@ export default {
             ? [true]
             : [
                 false,
-                'Format: <type>-<number> : <lowercase description>',
+                'Use format: <type>-<number> : <lowercase description>',
               ],
       },
     },
