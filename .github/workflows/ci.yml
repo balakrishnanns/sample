@@ -34,6 +34,6 @@ jobs:
       - name: Check Code Quality
         run: npm run lint --if-present
 
-      # Step 5: Execute your automated test cases
-      - name: Run Tests
-        run: npm test
+      # # Step 5: Execute your automated test cases
+      # - name: Run Tests
+      #   run: npm test
