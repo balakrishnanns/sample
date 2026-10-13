@@ -1,0 +1,39 @@
+name: CI Pipeline
+
+# 1. Define what events trigger this workflow
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch: # Allows you to manually trigger the workflow from the GitHub UI
+
+# 2. Define the execution blocks
+jobs:
+  build-and-test:
+    name: Build, Lint, and Test
+    runs-on: ubuntu-latest # The type of virtual machine runner to use
+
+    steps:
+      # Step 1: Clone the repository's code onto the runner
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up the specific programming language environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm' # Automatically caches dependencies for faster subsequent runs
+
+      # Step 3: Install dependencies cleanly according to lockfile
+      - name: Install Dependencies
+        run: npm ci
+
+      # Step 4: Run your formatting/linting scripts (optional but recommended)
+      - name: Check Code Quality
+        run: npm run lint --if-present
+
+      # Step 5: Execute your automated test cases
+      - name: Run Tests
+        run: npm test
