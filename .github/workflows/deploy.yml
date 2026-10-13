@@ -34,12 +34,10 @@ jobs:
         run: npm run build
 
       # Step 5: Deploy to your hosting provider/server
-      # Replace this step with your specific cloud provider or SSH deployment step
-      # Keep sensitive credentials secured inside GitHub Environment Secrets
-      - name: Deploy to Production
-        env:
-          DEPLOY_API_KEY: ${{ secrets.PRODUCTION_API_KEY }}
-        run: |
-          echo "Deploying built files to the production environment..."
-          # Example deployment command:
-          # npm run deploy -- --token=$DEPLOY_API_KEY
+      - name: Upload build files 
+        uses: actions/upload-pages-artifact@v3 
+        with: 
+          path: ./dist
+
+      - name: Deploy to GitHub Pages 
+        uses: actions/deploy-pages@v4
